@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cnr.admin.base.mapper.SysOperLogMapper" >
+  <resultMap id="BaseResultMap" type="cn.cnr.admin.base.model.SysOperLog" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="IP" property="ip" jdbcType="VARCHAR" />
+    <result column="username" property="username" jdbcType="VARCHAR" />
+    <result column="oper_model" property="operModel" jdbcType="VARCHAR" />
+    <result column="oper_type" property="operType" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="OPERATE_TIME" property="operateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, IP, username, oper_model, oper_type, CONTENT, OPERATE_TIME
+  </sql>
+
+  <select id="selectByPage" parameterType="java.util.Map" resultType="java.util.Map">
+    SELECT id,ip,username,oper_model operModel,oper_Type operType,content,OPERATE_TIME  operateTime
+    from t_sys_operate_log t
+    <where>
+      <if test="username != null" >
+        username=#{username}
+      </if>
+      <if test="operModel != null" >
+        oper_model=#{operModel}
+      </if>
+      <if test="operType != null" >
+        oper_type=#{operType}
+      </if>
+      <if test="content != null" >
+        CONTENT=#{content}
+      </if>
+      <if test="operateTime != null" >
+        OPERATE_TIME=#{operateTime}
+      </if>
+    </where>
+    ORDER BY t.`OPERATE_TIME` DESC
+  </select>
+
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_sys_operate_log
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from t_sys_operate_log
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="cn.cnr.admin.base.model.SysOperLog" >
+    insert into t_sys_operate_log (ID, IP, username, 
+      oper_model, oper_type, CONTENT, 
+      OPERATE_TIME)
+    values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
+      #{operModel,jdbcType=VARCHAR}, #{operType,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{operateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.cnr.admin.base.model.SysOperLog" >
+    insert into t_sys_operate_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="ip != null" >
+        IP,
+      </if>
+      <if test="username != null" >
+        username,
+      </if>
+      <if test="operModel != null" >
+        oper_model,
+      </if>
+      <if test="operType != null" >
+        oper_type,
+      </if>
+      <if test="content != null" >
+        CONTENT,
+      </if>
+      <if test="operateTime != null" >
+        OPERATE_TIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="operModel != null" >
+        #{operModel,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cnr.admin.base.model.SysOperLog" >
+    update t_sys_operate_log
+    <set >
+      <if test="ip != null" >
+        IP = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="operModel != null" >
+        oper_model = #{operModel,jdbcType=VARCHAR},
+      </if>
+      <if test="operType != null" >
+        oper_type = #{operType,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        CONTENT = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="operateTime != null" >
+        OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.cnr.admin.base.model.SysOperLog" >
+    update t_sys_operate_log
+    set IP = #{ip,jdbcType=VARCHAR},
+      username = #{username,jdbcType=VARCHAR},
+      oper_model = #{operModel,jdbcType=VARCHAR},
+      oper_type = #{operType,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      OPERATE_TIME = #{operateTime,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

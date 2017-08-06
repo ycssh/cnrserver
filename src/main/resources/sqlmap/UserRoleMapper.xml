@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cnr.admin.base.mapper.UserRoleMapper" >
+  <resultMap id="BaseResultMap" type="cn.cnr.admin.base.model.UserRole" >
+    <id column="USER_ID" property="userId" jdbcType="DECIMAL" />
+    <id column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    USER_ID, ROLE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.cnr.admin.base.model.UserRole" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_USER_ROLE
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+      and ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.cnr.admin.base.model.UserRole" >
+    delete from SYS_USER_ROLE
+    where USER_ID = #{userId,jdbcType=DECIMAL}
+      and ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByUser" parameterType="java.lang.Long" >
+    delete from SYS_USER_ROLE
+    where USER_ID = #{id,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.cnr.admin.base.model.UserRole" >
+    insert into SYS_USER_ROLE (USER_ID, ROLE_ID)
+    values (#{userId,jdbcType=DECIMAL}, #{roleId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List" >
+    insert into SYS_USER_ROLE (USER_ID, ROLE_ID) values
+    <foreach collection="list" item="item" index="index" separator=",">
+	   (#{item.userId,jdbcType=DECIMAL}, #{item.roleId,jdbcType=DECIMAL}) 
+    </foreach>
+  </insert>
+</mapper>

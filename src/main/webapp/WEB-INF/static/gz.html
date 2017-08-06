@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>麻将规则</title>
+    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+        html, body{background-color: rgba(0,0,0,0);}
+        .tab .nav-tabs {
+            border-bottom: 0 none;
+            background: rgba(234,234,234,.6);
+        }
+        
+        h4 {
+           margin: 0 0 6px;
+           line-height: 26px;
+           color: #fff;
+        }
+
+        .tab .nav-tabs li a {
+            background: transparent;
+            border-radius: 0;
+            font-size: 16px;
+            border: none;
+            color: #333;
+            padding: 10px 12px;
+        }
+
+        .tab .nav-tabs li.active a, .tab .nav-tabs li.active a i {
+            border: 0 none;
+            background: #e67e22;
+            color: #fff;
+        }
+
+        #myTab li.active a:after {
+            content: "";
+            position: absolute;
+            left: 45%;
+            bottom: -14px;
+            border: 7px solid transparent;
+            border-top: 7px solid #e67e22;
+        }
+
+        #myTab1 li.active a:after {
+            content: "";
+            position: absolute;
+            left: 100%;
+            bottom: 13px;
+            border: 7px solid transparent;
+            border-left: 7px solid #e67e22;
+        }
+        .fanshutitle{
+            color: rgb(21,162,48);
+            font-weight: bold;
+        }
+        .tab .tab-content {
+            color: #5a5c5d;
+            font-size: 14px;
+            line-height: 20px;
+        }
+        
+        #myTabContent img {
+            max-width: 100%;
+            margin-bottom: 10px;
+        }
+        
+        .no-padding-left {padding-left:0;}
+        .no-padding-right {padding-right:0;}
+
+        @media only screen and (max-width: 480px) {
+            .tab .nav-tabs, .tab .nav-tabs li {
+                width: 100%;
+                background: transparent;
+            }
+
+            .tab .nav-tabs li.active a {
+                border-radius: 10px 10px 0 0;
+            }
+
+            .tab .nav-tabs li:first-child a {
+                border-bottom-left-radius: 0;
+            }
+
+            .tab .nav-tabs li a {
+                margin-bottom: 10px;
+                border: 1px solid lightgray;
+            }
+
+            .tab .nav-tabs li.active a:after {
+                border: none;
+            }
+        }
+        #myTab1 li.active{
+            margin-right: -2px;
+        }
+    </style>
+</head>
+<body>
+<div class="tab" role="tabpanel">
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane fade in active" role="tabpanel" id="fanshu">
+            <div class="col-xs-12 no-padding-left no-padding-right">
+                <div class="col-xs-2 no-padding-left">
+                    <ul id="myTab1" class="nav nav-tabs nav-stacked" role="tablist">
+                        <li class="active">
+                            <a href="#1fan" aria-controls="home" data-toggle="tab">
+                                1番
+                            </a>
+                        </li>
+                        <li><a href="#2fan" aria-controls="home" data-toggle="tab">2番</a></li>
+                        <li><a href="#4fan" aria-controls="home" data-toggle="tab">4番</a></li>
+                        <li><a href="#8fan" aria-controls="home" data-toggle="tab">8番</a></li>
+                        <li><a href="#16fan" aria-controls="home" data-toggle="tab">16番</a></li>
+                        <li><a href="#32fan" aria-controls="home" data-toggle="tab">32番</a></li>
+                        <li><a href="#else" aria-controls="home" data-toggle="tab">说明</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-10 no-padding-left no-padding-right">
+                    <div id="myTabContent1" class="tab-content" style="padding: 5px;">
+                        <div class="tab-pane fade in active" id="1fan">
+                            <h4>
+                                <font class="fanshutitle">普通胡</font>
+                                <br>四副牌+一对将，胡两手可走</h4>
+                            <img src="mj/1fan.png"><br/>
+                        </div>
+                        <div class="tab-pane fade" id="2fan">
+                            <h4>
+                                <font class="fanshutitle">1.大吊车</font><br>碰了四对手里还剩一张牌，胡两手可走<br/>
+                            </h4>
+                            <img src="mj/2-1fan.png"><br/>
+                            <h4>
+                                <font class="fanshutitle">2.七对</font>
+                                <br>
+                                六对子+一张单牌，胡两手可走</h4>
+                            <img src="mj/2-2fan.png"><br/>
+                        </div>
+                        <div class="tab-pane fade" id="4fan">
+                            <h4>
+                                <font class="fanshutitle">母龙</font>
+                                <br>
+                                四对子+一杠牌+一张单牌，胡两手可走</h4>
+                            <img src="mj/4fan.png"><br/>
+                        </div>
+                        <div class="tab-pane fade" id="8fan">
+                            <h4>
+                                <font class="fanshutitle">1.公龙</font>
+                                <br>
+                                五对子+一三头，胡一手可走</h4>
+                            <img src="mj/8-1fan.png"><br/>
+                            <h4>
+                                <font class="fanshutitle">2. 双母龙</font>
+                                <br>
+                                两对子+两杠牌+一张单牌，胡两手可走</h4>
+                            <img src="mj/8-2fan.png"><br/>
+                        </div>
+                        <div class="tab-pane fade" id="16fan">
+                            <h4>
+                                <font class="fanshutitle">1. 双龙</font>
+                                <br>
+                                三对子+一杠牌+一三头，胡一手可走</h4>
+                            <img src="mj/16-1fan.png"><br/>
+                            <h4>
+                                <font class="fanshutitle">2. 三母龙</font>
+                                <br>
+                                三杠牌+一张单牌，胡两手可走</h4>
+                            <img src="mj/16-2fan.png"><br/>
+                        </div>
+                        <div class="tab-pane fade" id="32fan">
+                            <h4>
+                                <font class="fanshutitle">三龙</font>
+                                <br>
+                                一对子+两杠牌+一三头，胡一手可走</h4>
+                            <img src="mj/32fan.png"><br/>
+                        </div>
+                        <div class="tab-pane fade" id="else">
+                            <h4>
+                                <font class="fanshutitle">
+                                    1.以上牌型清一色翻倍，放胡必须胡</font>
+                                <br>
+                                <font class="fanshutitle">2.组成</font>
+                                <br>
+                            	&nbsp;&nbsp;1）牌局麻将使用由条、饼、万、中、发、白，总计120张牌组成</br>
+                                &nbsp;&nbsp;2）游戏人数为4人，每人手里13张牌，不能吃牌，可以碰和杠</br>
+                                <font class="fanshutitle">3.定庄</font>
+                                <br>
+                				第一把每人打一次骰子，以骰子点数大的为庄，以后每把定庄规则如下：<br/>
+                                &nbsp;&nbsp;1）有人走，由第一个放弃继续胡牌的人做庄<br/>
+                                &nbsp;&nbsp;2）无人走且只有一个没听牌，由没听牌的陪叫且做庄<br/>
+                                &nbsp;&nbsp;3）无人走且不是只有一个人没听牌，则由第一个胡牌的人或第一个听牌的人或上一把的庄家继续做庄家，优先级由左至右
+                            </h4>
+                        </div>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
+    </div>
+
+</body><script type="text/javascript" src="DataTables-1.10.12/media/js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="bootstrap/js/bootstrap.min.js"></script>
+</html>

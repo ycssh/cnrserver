@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cnr.admin.base.mapper.RoleResourceMapper" >
+  <resultMap id="BaseResultMap" type="cn.cnr.admin.base.model.RoleResource" >
+    <id column="ROLE_ID" property="roleId" jdbcType="DECIMAL" />
+    <id column="RESOURCE_ID" property="resourceId" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ROLE_ID, RESOURCE_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="cn.cnr.admin.base.model.RoleResource" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_ROLE_RESOURCE
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+      and RESOURCE_ID = #{resourceId,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="cn.cnr.admin.base.model.RoleResource" >
+    delete from SYS_ROLE_RESOURCE
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+      and RESOURCE_ID = #{resourceId,jdbcType=DECIMAL}
+  </delete>
+  <delete id="deleteByRole" parameterType="java.lang.Long" >
+    delete from SYS_ROLE_RESOURCE
+    where ROLE_ID = #{roleId,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="cn.cnr.admin.base.model.RoleResource" >
+    insert into SYS_ROLE_RESOURCE (ROLE_ID, RESOURCE_ID)
+    values (#{roleId,jdbcType=DECIMAL}, #{resourceId,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertBatch" parameterType="java.util.List">
+    insert into SYS_ROLE_RESOURCE (ROLE_ID, RESOURCE_ID)
+    values  
+    <foreach collection="list" item="item" index="index" separator=",">
+	  (#{item.roleId,jdbcType=DECIMAL}, #{item.resourceId,jdbcType=DECIMAL})
+    </foreach>
+	</insert>
+</mapper>

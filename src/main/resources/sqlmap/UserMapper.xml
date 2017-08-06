@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.cnr.admin.base.mapper.UserMapper" >
+  <resultMap id="BaseResultMap" type="cn.cnr.admin.base.model.User" >
+    <id column="ID" property="id" jdbcType="INTEGER" />
+    <result column="NAME" property="name" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="SALT" property="salt" jdbcType="VARCHAR" />
+    <result column="USERNAME" property="username" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, NAME, PHONE, PASSWORD, SALT,  USERNAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_USER
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="findByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from SYS_USER
+        	where username = #{username,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="select" resultMap="BaseResultMap" parameterType="cn.cnr.admin.base.model.User" >
+    select 
+    ID, NAME, PHONE,  USERNAME
+    from SYS_USER
+    <where>
+   	  	<if test="name != null and name!=''" >
+   	  		<bind name="pattern" value="'%' + _parameter.name + '%'" />
+        	and name like #{pattern,jdbcType=VARCHAR}
+    	</if>
+   	  	<if test="username != null and username!=''" >
+          <bind name="pattern1" value="'%' + _parameter.username + '%'" />
+        	and username like  #{pattern1,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  
+  <select id="selectCount" resultType="java.lang.Integer" parameterType="cn.cnr.admin.base.model.User" >
+    select 
+    count(*)
+    from SYS_USER
+    <where>
+   	  	<if test="name != null" >
+   	  		<bind name="pattern" value="'%' + _parameter.name + '%'" />
+        	and name like #{pattern,jdbcType=VARCHAR}
+    	</if>
+    </where>
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from SYS_USER
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  
+  <insert id="insert" parameterType="cn.cnr.admin.base.model.User"  useGeneratedKeys="true" keyProperty="id" >
+    insert into SYS_USER (NAME, 
+      PHONE, PASSWORD, SALT, USERNAME
+      )
+    values (#{name,jdbcType=VARCHAR}, 
+      #{phone,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{salt,jdbcType=VARCHAR}, 
+       #{username,jdbcType=VARCHAR}
+      )
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.cnr.admin.base.model.User" >
+    update SYS_USER
+    <set >
+      <if test="name != null" >
+        NAME = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="salt != null" >
+        SALT = #{salt,jdbcType=VARCHAR},
+      </if>
+      <if test="username != null" >
+        USERNAME = #{username,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updatePwd" parameterType="cn.cnr.admin.base.model.User" >
+    update SYS_USER
+    <set >
+      <if test="password != null" >
+        password = #{password,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.cnr.admin.base.model.User" >
+    update SYS_USER
+    set NAME = #{name,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      SALT = #{salt,jdbcType=VARCHAR},
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

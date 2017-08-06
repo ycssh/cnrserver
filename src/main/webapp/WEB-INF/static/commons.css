@@ -1,0 +1,46 @@
+.head {
+    background: url("../images/head-bg.png") repeat-x;
+}
+body {
+    background: rgb(238 238 238);
+}
+#search table {
+    width: 100%;
+    background: rgb(247 247 247);
+}
+#search td {
+    padding-left: 5px;
+    padding-right: 5px;
+}
+.form-control {
+    display: inline;
+}
+.dialog-control {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    height: 20px;
+}
+
+.dialog-control span {
+    cursor: pointer;
+    float: right;
+    text-indent: 500px;
+}
+.dialog-icon {
+    background: url(../images/dialog-icon_a9118ce.png) no-repeat 0 0;
+    height: 20px;
+    width: 20px;
+}
+.dialog-close {
+    background-position: -80px 0;
+}
+
+.dialog-min {
+    background-position: -60px 0;
+}
+.footer {
+    /*color: #777;*/
+    /*padding: 30px 0;*/
+     /*border-top: 1px solid #e5e5e5;*/
+}
