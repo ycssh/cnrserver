@@ -11,12 +11,6 @@
         <welcome-file>/index</welcome-file>
     </welcome-file-list>
 
-    <jsp-config>
-        <taglib>
-            <taglib-uri>/madmin-functions</taglib-uri>
-            <taglib-location>/WEB-INF/tld/madmin-functions.tld</taglib-location>
-        </taglib>
-    </jsp-config>
     <!-- Spring配置文件开始  -->
     <context-param>
         <param-name>contextConfigLocation</param-name>
