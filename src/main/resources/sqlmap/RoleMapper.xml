@@ -13,14 +13,14 @@
 		parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from SYS_ROLE
+		from t_svr_ROLE
 		where ID = #{id,jdbcType=DECIMAL}
 	</select>
 	<select id="selectByPage" resultMap="BaseResultMap"
 		parameterType="cn.cnr.admin.base.model.Role">
 		select
 		<include refid="Base_Column_List" />
-		from SYS_ROLE
+		from t_svr_ROLE
 		<where>
 			<if test="role != null and role!=''">
 				and ROLE= #{role,jdbcType=VARCHAR}
@@ -35,7 +35,7 @@
 		parameterType="cn.cnr.admin.base.model.Role">
 		select
 		<include refid="Base_Column_List" />
-		from SYS_ROLE
+		from t_svr_ROLE
 		<where>
 			<if test="role != null and role!=''">
 				and ROLE= #{role,jdbcType=VARCHAR}
@@ -50,20 +50,20 @@
 		parameterType="java.lang.Long">
 		select
 		<include refid="Base_Column_List" />
-		from SYS_ROLE r where exists (select * from sys_user_role where
+		from t_svr_ROLE r where exists (select * from t_svr_user_role where
 		role_id=r.id and user_id=#{userId,jdbcType=DECIMAL})
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from SYS_ROLE
+		delete from t_svr_ROLE
 		where ID = #{id,jdbcType=DECIMAL}
 	</delete>
 	<insert id="insert" parameterType="cn.cnr.admin.base.model.Role"
 		keyProperty="id" useGeneratedKeys="true">
-		insert into SYS_ROLE (NAME, ROLE)
+		insert into t_svr_ROLE (NAME, ROLE)
 		values (#{name,jdbcType=VARCHAR}, #{role,jdbcType=VARCHAR})
 	</insert>
 	<insert id="insertSelective" parameterType="cn.cnr.admin.base.model.Role">
-		insert into SYS_ROLE
+		insert into t_svr_ROLE
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
 				ID,
@@ -77,7 +77,7 @@
 		</trim>
 	</insert>
 	<update id="updateByPrimaryKeySelective" parameterType="cn.cnr.admin.base.model.Role">
-		update SYS_ROLE
+		update t_svr_ROLE
 		<set>
 			<if test="name != null">
 				NAME = #{name,jdbcType=VARCHAR},
@@ -89,7 +89,7 @@
 		where ID = #{id,jdbcType=DECIMAL}
 	</update>
 	<update id="updateByPrimaryKey" parameterType="cn.cnr.admin.base.model.Role">
-		update SYS_ROLE
+		update t_svr_ROLE
 		set NAME = #{name,jdbcType=VARCHAR},
 		ROLE = #{role,jdbcType=VARCHAR}
 		where ID = #{id,jdbcType=DECIMAL}

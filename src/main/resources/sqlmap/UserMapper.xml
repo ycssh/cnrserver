@@ -15,20 +15,20 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from SYS_USER
+    from t_svr_USER
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <select id="findByUsername" resultMap="BaseResultMap" parameterType="java.lang.String" >
     select 
     <include refid="Base_Column_List" />
-    from SYS_USER
+    from t_svr_USER
         	where username = #{username,jdbcType=VARCHAR}
   </select>
   
   <select id="select" resultMap="BaseResultMap" parameterType="cn.cnr.admin.base.model.User" >
     select 
     ID, NAME, PHONE,  USERNAME
-    from SYS_USER
+    from t_svr_USER
     <where>
    	  	<if test="name != null and name!=''" >
    	  		<bind name="pattern" value="'%' + _parameter.name + '%'" />
@@ -44,7 +44,7 @@
   <select id="selectCount" resultType="java.lang.Integer" parameterType="cn.cnr.admin.base.model.User" >
     select 
     count(*)
-    from SYS_USER
+    from t_svr_USER
     <where>
    	  	<if test="name != null" >
    	  		<bind name="pattern" value="'%' + _parameter.name + '%'" />
@@ -54,12 +54,12 @@
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from SYS_USER
+    delete from t_svr_USER
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   
   <insert id="insert" parameterType="cn.cnr.admin.base.model.User"  useGeneratedKeys="true" keyProperty="id" >
-    insert into SYS_USER (NAME, 
+    insert into t_svr_USER (NAME,
       PHONE, PASSWORD, SALT, USERNAME
       )
     values (#{name,jdbcType=VARCHAR}, 
@@ -68,7 +68,7 @@
       )
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.cnr.admin.base.model.User" >
-    update SYS_USER
+    update t_svr_USER
     <set >
       <if test="name != null" >
         NAME = #{name,jdbcType=VARCHAR},
@@ -86,7 +86,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updatePwd" parameterType="cn.cnr.admin.base.model.User" >
-    update SYS_USER
+    update t_svr_USER
     <set >
       <if test="password != null" >
         password = #{password,jdbcType=VARCHAR},
@@ -95,7 +95,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.cnr.admin.base.model.User" >
-    update SYS_USER
+    update t_svr_USER
     set NAME = #{name,jdbcType=VARCHAR},
       PHONE = #{phone,jdbcType=VARCHAR},
       PASSWORD = #{password,jdbcType=VARCHAR},

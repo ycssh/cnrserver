@@ -16,7 +16,7 @@
 
   <select id="selectByPage" parameterType="java.util.Map" resultType="java.util.Map">
     SELECT id,ip,username,oper_model operModel,oper_Type operType,content,OPERATE_TIME  operateTime
-    from t_sys_operate_log t
+    from t_t_svr_operate_log t
     <where>
       <if test="username != null" >
         username=#{username}
@@ -40,15 +40,15 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from t_sys_operate_log
+    from t_t_svr_operate_log
     where ID = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from t_sys_operate_log
+    delete from t_t_svr_operate_log
     where ID = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.cnr.admin.base.model.SysOperLog" >
-    insert into t_sys_operate_log (ID, IP, username, 
+    insert into t_t_svr_operate_log (ID, IP, username,
       oper_model, oper_type, CONTENT, 
       OPERATE_TIME)
     values (#{id,jdbcType=INTEGER}, #{ip,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, 
@@ -56,7 +56,7 @@
       #{operateTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="cn.cnr.admin.base.model.SysOperLog" >
-    insert into t_sys_operate_log
+    insert into t_t_svr_operate_log
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
@@ -105,7 +105,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.cnr.admin.base.model.SysOperLog" >
-    update t_sys_operate_log
+    update t_t_svr_operate_log
     <set >
       <if test="ip != null" >
         IP = #{ip,jdbcType=VARCHAR},
@@ -129,7 +129,7 @@
     where ID = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.cnr.admin.base.model.SysOperLog" >
-    update t_sys_operate_log
+    update t_t_svr_operate_log
     set IP = #{ip,jdbcType=VARCHAR},
       username = #{username,jdbcType=VARCHAR},
       oper_model = #{operModel,jdbcType=VARCHAR},

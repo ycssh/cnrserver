@@ -14,7 +14,7 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_init
+    from t_svr_init
     where id = #{id,jdbcType=INTEGER}
   </select>
   
@@ -22,21 +22,21 @@
   <select id="selectAll" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from sys_init
+    from t_svr_init
   </select>
   
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-    delete from sys_init
+    delete from t_svr_init
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="cn.cnr.admin.base.model.SysInit">
-    insert into sys_init (id, name, value, 
+    insert into t_svr_init (id, name, value,
       unit, type)
     values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{value,jdbcType=VARCHAR}, 
       #{unit,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="cn.cnr.admin.base.model.SysInit">
-    insert into sys_init
+    insert into t_svr_init
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
@@ -73,7 +73,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.cnr.admin.base.model.SysInit">
-    update sys_init
+    update t_svr_init
     <set>
       <if test="name != null">
         name = #{name,jdbcType=VARCHAR},
@@ -91,7 +91,7 @@
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.cnr.admin.base.model.SysInit">
-    update sys_init
+    update t_svr_init
     set name = #{name,jdbcType=VARCHAR},
       value = #{value,jdbcType=VARCHAR},
       unit = #{unit,jdbcType=VARCHAR},

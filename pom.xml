@@ -6,6 +6,7 @@
 
     <groupId>cn.cnr</groupId>
     <artifactId>cnr-server</artifactId>
+    <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
     <properties>
         <lombok.version>1.16.6</lombok.version>
@@ -359,7 +360,7 @@
 
     </dependencies>
     <build>
-        <finalName>mahjong-admin</finalName>
+        <finalName>cnrserver</finalName>
         <plugins>
 
             <plugin>

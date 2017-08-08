@@ -87,8 +87,6 @@
     
     <import resource="classpath:spring-config-cache.xml"/>
     <import resource="classpath:spring-config-shiro.xml"/>
-    <import resource="classpath:spring-config-redis.xml"/>
-    <import resource="classpath:spring-schedule.xml"/>
 	<!-- ========================================针对myBatis的配置项============================== -->
     <!-- 配置sqlSessionFactory -->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">

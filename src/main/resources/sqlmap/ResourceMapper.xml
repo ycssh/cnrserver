@@ -18,38 +18,38 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from SYS_RESOURCE
+    from t_svr_RESOURCE
     where ID = #{id,jdbcType=DECIMAL}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from SYS_RESOURCE
+    from t_svr_RESOURCE
   </select>
   <select id="selectByParent" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from SYS_RESOURCE
+    from t_svr_RESOURCE
     where parentId= #{parentId,jdbcType=DECIMAL}
   </select>
   <select id="selectByRole" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
-    <include refid="Base_Column_List" /> from SYS_RESOURCE
-    where id in(select resource_id from sys_role_resource where role_id=#{roleId,jdbcType=DECIMAL})
+    <include refid="Base_Column_List" /> from t_svr_RESOURCE
+    where id in(select resource_id from t_svr_role_resource where role_id=#{roleId,jdbcType=DECIMAL})
   </select>
   <select id="selectByUser" resultMap="BaseResultMap" parameterType="java.lang.Long" >
     select 
     <include refid="Base_Column_List" />
-    from SYS_RESOURCE r
-     where exists (select * from sys_role_resource rr where rr.resource_id=r.id
-    and exists(select * from sys_user_role ur where ur.role_id=rr.role_id and ur.user_id= #{userId,jdbcType=DECIMAL})) order by r.sort_num
+    from t_svr_RESOURCE r
+     where exists (select * from t_svr_role_resource rr where rr.resource_id=r.id
+    and exists(select * from t_svr_user_role ur where ur.role_id=rr.role_id and ur.user_id= #{userId,jdbcType=DECIMAL})) order by r.sort_num
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from SYS_RESOURCE
+    delete from t_svr_RESOURCE
     where ID = #{id,jdbcType=DECIMAL}
   </delete>
   <insert id="insert" parameterType="cn.cnr.admin.base.model.Resource" >
-    insert into SYS_RESOURCE (ID, NAME, URL, 
+    insert into t_svr_RESOURCE (ID, NAME, URL,
       PARENTID, TYPE, PERMISSION, 
       SHOWINFRONT, PICNAME, RES_TYPE
       )
@@ -59,7 +59,7 @@
       )
   </insert>
   <insert id="insertSelective" parameterType="cn.cnr.admin.base.model.Resource" >
-    insert into SYS_RESOURCE
+    insert into t_svr_RESOURCE
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         ID,
@@ -120,7 +120,7 @@
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="cn.cnr.admin.base.model.Resource" >
-    update SYS_RESOURCE
+    update t_svr_RESOURCE
     <set >
       <if test="name != null" >
         NAME = #{name,jdbcType=VARCHAR},
@@ -150,7 +150,7 @@
     where ID = #{id,jdbcType=DECIMAL}
   </update>
   <update id="updateByPrimaryKey" parameterType="cn.cnr.admin.base.model.Resource" >
-    update SYS_RESOURCE
+    update t_svr_RESOURCE
     set NAME = #{name,jdbcType=VARCHAR},
       URL = #{url,jdbcType=VARCHAR},
       PARENTID = #{parentId,jdbcType=DECIMAL},
